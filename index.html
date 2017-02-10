@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Francisco Resume</title>
+  		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<style type="text/css" media="screen">
+       		@import url("css/reset.css");
+			@import url("css/styles.css");
+		</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  	</head>
+  	<body>
+  					<!--Parallax for Contact info -->
+  					
+      	<div class="info" id="name">
+      		<h2 id="fly">Hello this is Nicole Francisco's Resume$You can contact me at franciscon@knights.ucf.edu$Come and see what makes me...well ME</h2>
+      	</div>
+  					  		
+  		<div class="parallax-container">
+      		<div class="parallax">
+      			<img src="images/ucf.jpg" alt="UCF Campus">
+      		</div>
+    	</div>
+    	
+    	<div class="info">
+  			<h2>Education</h2>
+  			<ul class="span4">
+  				<li>University of Central Florida, 2013 to Current</li>
+  				<li>Seminole State College, 2009 - 2013</li>
+  				<li>Specialized Course: Military IT/Communications 2003</li>
+  			</ul>
+  			<h2>Honors</h2>
+  			<ul class="span4">
+  				<li>Deans List/Presidents List 2009-2013</li>
+  				<li>Graduated Magna Cum Laude from Seminole State</li>
+  			</ul>
+  		</div>
+  		
+  		<div class="parallax-container">
+      		<div class="parallax"> <img src="images/stennis.jpg" alt="John C Stennis"></div>
+    	</div>
+    	
+  		<div class="info">
+  			<h2>Work History</h2>
+  			<ul class="span4">
+  				<li>Student 2009-Current</li>
+  				<li>BlockBuster, Lake Mary Fl 2008-2010</li>
+  				<li>The Children's Place, Altamonte Springs Fl 2007-2008</li>
+  				<li>USN/USS John C Stennis 2003-2006
+  			</ul>
+  		</div>
+    	
+    	<div class="parallax-container">
+      		<div class="parallax"> <img src="images/adobe.png" alt="Adobe Products"></div>
+    	</div>
+  		
+		<div class="info">
+			<div id="chart"></div>
+  			<h2>Skills (D3 will go here)</h2>
+  			<ul>
+  				<li>HTML</li>
+  				<li>CSS</li>
+  				<li>Javascript</li>
+  				<li>Jquery</li>
+  				<li>D3</li>
+  				<li>C++</li>
+  				<li>Office</li>
+  				<li>Adobe</li>
+  			</ul>
+  		</div>
+				
+		<div class="parallax-container">
+      		<div class="parallax"> <img src="images/portfolio.png" alt="Adobe Products"></div>
+    	</div>	
+    	
+    	<div class="info">
+			<div id="chart"></div>
+  			<h2>Portfolio</h2>
+  			<p>Screen Shots and links</p>
+  		</div>
+  		
+			 <script>
+			 	var myData = [100, 125, 320, 440, 500];
+			 	
+			 	var height = 500;
+			 	var width = 500;
+			 	var barWidth = 35;
+			 	var barOffset = 5;
+			 	
+			 	var myChart = d3.select('#chart').append('svg')
+			 		.attr('width', width)
+			 		.attr('height', height)
+			 		.style('background', '#f4f4f4')
+			 		.selectAll('rect')
+			 			.data(myData)
+			 			.enter().append('rect')
+			 				.style('fill', 'lightgreen')
+			 				.attr('width', barWidth)
+			 				.attr('height', function()d{
+			 					return d;
+			 				})
+			 				.attr('x', function(d, i){
+			 					return i * (barWidth + barOffset);
+			 				})
+			 				.attr('y', function(d) {
+			 					return height - e;
+			 				})
+			 </script>		
+					
+					<!-- Script for the flying letters -->
+    	<script type="text/javascript">
+			message = document.getElementById("fly").innerHTML; // $ = taking a new line
+			distance = 50; // pixel(s)
+			speed = 100; // milliseconds
+
+			var txt="",
+				num=0,
+				num4=0,
+				flyofle="",
+				flyofwi="",
+				flyofto="",
+				fly=document.getElementById("fly");
+
+
+			function stfly() {
+				for(i=0;i != message.length;i++) {
+					if(message.charAt(i) != "$")
+						txt += "<span style='position:relative;visibility:hidden;' id='n"+i+"'>"+message.charAt(i)+"<\/span>";
+					else
+					txt += "<br>";
+					}
+				fly.innerHTML = txt;
+				txt = "";
+				flyofle = fly.offsetLeft;
+				flyofwi = fly.offsetWidth;
+				flyofto = fly.offsetTop;
+				fly2b();
+			}
+
+			function fly2b() {
+				if(num4 != message.length) {
+					if(message.charAt(num4) != "$") {
+						var then = document.getElementById("n" + num4);
+						then.style.left = flyofle - then.offsetLeft + flyofwi / 2 + 'px';
+						then.style.top = flyofto - then.offsetTop + distance + 'px';
+						fly3(then.id, parseInt(then.style.left), parseInt(then.style.left) / 5, parseInt(then.style.top), parseInt(then.style.top) / 5);
+					}
+					num4++;
+					setTimeout("fly2b()", speed);
+				}
+			}
+
+			function fly3(target,lef2,num2,top2,num3) {
+				if((Math.floor(top2) != 0 && Math.floor(top2) != -1) || (Math.floor(lef2) != 0 && Math.floor(lef2) != -1)) {
+					if(lef2 >= 0)
+						lef2 -= num2;
+					else
+						lef2 += num2 * -1;
+					if(Math.floor(lef2) != -1) {
+						document.getElementById(target).style.visibility = "visible";
+						document.getElementById(target).style.left = Math.floor(lef2) + 'px';
+					} else {
+						document.getElementById(target).style.visibility = "visible";
+						document.getElementById(target).style.left = Math.floor(lef2 + 1) + 'px';
+					}
+					if(lef2 >= 0)
+						top2 -= num3
+					else
+						top2 += num3 * -1;
+					if(Math.floor(top2) != -1)
+						document.getElementById(target).style.top = Math.floor(top2) + 'px';
+					else
+						document.getElementById(target).style.top = Math.floor(top2 + 1) + 'px';
+						setTimeout("fly3('"+target+"',"+lef2+","+num2+","+top2+","+num3+")",50)
+					}
+			}
+
+			stfly()
+
+			</script>
+			
+    	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      	<script type="text/javascript" src="js/materialize.min.js"></script>
+    	<script>
+    		$(document).ready(function(){
+      			$('.parallax').parallax();
+    		});
+    	</script>
+    	<script>
+    	
+  	</body>
+</html>
